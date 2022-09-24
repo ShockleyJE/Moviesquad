@@ -2,7 +2,7 @@
 
 a collaborative, cross-platform & multi-service watchlist designed to respect your time and get out of your squads way
 
-![Screen shot](/docs/promotional/home.PNG?raw=true "Screenshot")
+<img src="https://github.com/ShockleyJE/Moviesquad/blob/main/docs/promotional/home.png" width="100%"  alt="Moviesquad"/>
 
 ## about
 
