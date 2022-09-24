@@ -1,0 +1,66 @@
+/* Login */
+
+.flex-centered {
+  display: flex;
+  justify-content: center;
+}
+
+.title-wrapper {
+  /* background: var(--main-card-color); */
+  line-height: 1;
+  min-height: 100%;
+  display: grid;
+  place-items: center;
+  min-height: fit-content;
+}
+
+#logo-login {
+  font-family: "Nunito", sans-serif;
+  font-size: 2.5rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  background: linear-gradient(
+    219deg,
+    var(--color-1) 19%,
+    transparent 19%,
+    transparent 20%,
+    var(--color-2) 20%,
+    var(--color-2) 39%,
+    transparent 39%,
+    transparent 40%,
+    var(--color-3) 40%,
+    var(--color-3) 59%,
+    transparent 59%,
+    transparent 60%,
+    var(--color-4) 60%,
+    var(--color-4) 79%,
+    transparent 79%,
+    transparent 80%,
+    var(--color-5) 80%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+:root {
+  --main-bg-color: #f3f3f3;
+  --main-card-color: #ffffff;
+  --main-text-color: #2f3e46;
+  --main-highlight-color: #84a98c;
+
+  --mid-bg-color: #52b788;
+  --login-hover: #5dd39e;
+  --signup-hover: #effae9;
+
+  --alert-text: #f72585;
+
+  /* title colored text */
+  --color-1: #525353;
+  --color-2: #2a9a9f;
+  --color-3: #f1b211;
+  --color-4: #e07a5f;
+  --color-5: #81b29a;
+
+  display: flex;
+}

@@ -1,0 +1,25 @@
+<%- include('partials/head.ejs') %>
+<body>
+  <%- include('partials/navbar.ejs') %>
+  <div class="empty-flex">
+    <div class="eighty-centered">
+      <div class="upper">
+        <% yourWatchlists.forEach( el => { %>
+        <div class="watchlist-card">
+          <p><%=el.name%></p>
+        </div>
+        <% }) %>
+      </div>
+      <div class="">
+        <a
+          href="/watchlists/create"
+          class="rounded-button new-button bottom-right"
+          >+</a
+        >
+      </div>
+    </div>
+  </div>
+  <script src="js/main.js"></script>
+</body>
+
+<%- include('partials/tail.ejs') %>

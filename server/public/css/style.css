@@ -1,0 +1,398 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital@0;1&display=swap");
+
+:root {
+  --main-bg-color: #f3f3f3;
+  --main-card-color: #ffffff;
+  --main-text-color: #2f3e46;
+  --main-highlight-color: #84a98c;
+
+  --mid-bg-color: #52b788;
+  --login-hover: #5dd39e;
+  --signup-hover: #effae9;
+
+  --alert-text: #f72585;
+
+  /* title colored text */
+  --color-1: #2f3e46;
+  --color-2: #2a9a9f;
+  --color-3: #f1b211;
+  --color-4: #e07a5f;
+  --color-5: #81b29a;
+
+  display: flexbox;
+}
+
+body {
+  background-color: var(--main-bg-color);
+  color: var(--main-text-color);
+  font-family: "Roboto", sans-serif;
+}
+
+/* 
+===============
+CARDS
+===============
+*/
+.card {
+  background-color: var(--main-card-color);
+  width: fit-content;
+  height: fit-content;
+  padding: 5rem;
+  border-radius: 20px;
+}
+
+.form-card {
+  background-color: var(--main-card-color);
+  padding: 2rem;
+  border-radius: 20px;
+  width: fit-content;
+  display: flex;
+}
+/* 
+===============
+FORMS
+===============
+*/
+
+form {
+  justify-self: center;
+  align-self: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* 
+===============
+GLOBAL
+===============
+*/
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+/* 
+===============
+partials --> footer.ejs  styles
+=============== 
+*/
+footer {
+  margin: 0;
+  text-align: center;
+}
+footer a {
+  text-decoration: underline;
+  color: var(--main-text-color);
+}
+
+/* 
+===============
+partials --> navbar.ejs  styles
+=============== 
+*/
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 0rem 3rem;
+  align-items: center;
+  height: 3rem;
+  background-color: #ffffff;
+}
+
+.topbar > a {
+  height: 2.5rem;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
+}
+
+.topbar > a > img {
+  height: 2.5rem;
+  border-radius: 50%;
+}
+
+#logo {
+  font-family: "Nunito", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  background: linear-gradient(
+    219deg,
+    var(--color-1) 19%,
+    transparent 19%,
+    transparent 20%,
+    var(--color-2) 20%,
+    var(--color-2) 39%,
+    transparent 39%,
+    transparent 40%,
+    var(--color-3) 40%,
+    var(--color-3) 59%,
+    transparent 59%,
+    transparent 60%,
+    var(--color-4) 60%,
+    var(--color-4) 79%,
+    transparent 79%,
+    transparent 80%,
+    var(--color-5) 80%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+#topbar .title-wrapper {
+  background: var(--main-bg-color);
+  line-height: 1;
+  min-height: 100%;
+  display: grid;
+  place-items: center;
+  min-height: fit-content;
+}
+
+/* 
+================
+Scrollbar
+================
+*/
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* 
+===============
+INDEX.ejs  styles
+=============== 
+*/
+
+.index-top {
+  display: flex;
+  background-color: #f3f3f3;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
+.index-description {
+  background-color: #ffffff;
+}
+.index-description h3 {
+  font-size: 1rem;
+}
+
+.index-description .login-container {
+  padding: 1rem 0;
+}
+
+.index-description .login-container input {
+  width: 100%;
+  height: 2rem;
+  margin: 0.25rem;
+}
+.index-description .login-container button {
+  width: 100%;
+  height: 2rem;
+}
+.title-wrapper {
+  background: var(--main-card-color);
+  line-height: 1;
+  min-height: 100%;
+  display: grid;
+  place-items: center;
+  min-height: fit-content;
+}
+.index-description h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin: auto;
+  text-transform: uppercase;
+  background: linear-gradient(
+    219deg,
+    var(--color-1) 19%,
+    transparent 19%,
+    transparent 20%,
+    var(--color-2) 20%,
+    var(--color-2) 39%,
+    transparent 39%,
+    transparent 40%,
+    var(--color-3) 40%,
+    var(--color-3) 59%,
+    transparent 59%,
+    transparent 60%,
+    var(--color-4) 60%,
+    var(--color-4) 79%,
+    transparent 79%,
+    transparent 80%,
+    var(--color-5) 80%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.index-top > div {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.index-top .description {
+  padding-top: 1rem;
+  font-size: 1.3rem;
+}
+section div h3 {
+  font-size: 1.3rem;
+}
+.btn {
+  display: flex;
+  color: var(--main-bg-color);
+  font-size: 1.3rem;
+  font-weight: bolder;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 50px;
+  text-decoration: none;
+  border-radius: 5px;
+}
+.login {
+  background-color: var(--mid-bg-color);
+}
+.login:hover {
+  background-color: var(--login-hover);
+}
+.signup {
+  background-color: var(--main-text-color);
+}
+.signup:hover {
+  background-color: var(--signup-hover);
+}
+.button-container {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin: 2rem 4rem;
+}
+
+/* 
+===============
+login.ejs  styles
+=============== 
+*/
+#login-section {
+  width: auto;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form-container {
+  max-width: 400px;
+}
+.form-container form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.form-container h1 {
+  font-size: 2.5rem;
+}
+.form-container p,
+.form-container input {
+  margin: 15px 0;
+}
+.form-container input {
+  height: 35px;
+}
+.full-btn {
+  width: 100%;
+  background-color: var(--login-hover);
+  border: none;
+  border-radius: 5px;
+}
+.full-btn:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+.form-container a {
+  text-decoration: underline;
+  color: var(--main-text-color);
+}
+.underlined-input {
+  border: none;
+  outline: none;
+  border-bottom: 1px solid var(--login-hover);
+  color: var(--main-text-color);
+}
+.underlined-input:active {
+  outline: none;
+  border: none;
+}
+
+/* 
+==========
+ALERT
+==========
+*/
+
+.alert {
+  color: var(--alert-text);
+}
+
+/* 
+==========
+Watchlists.ejs
+==========
+*/
+.eighty-centered {
+  width: 80%;
+  justify-content: center;
+}
+
+.empty-flex {
+  display: flex;
+  justify-content: center;
+}
+
+.watchlist-card {
+  width: 60%;
+  background-color: var(--main-card-color);
+  width: 100%;
+  height: fit-content;
+  padding: 1rem;
+  margin: 3rem 0rem;
+  border-radius: 20px;
+}
+
+.rounded-button {
+  border-radius: 50%;
+  border: 1rem;
+  padding: 0.5rem 1rem;
+  font-size: 1.5rem;
+  background-color: var(--main-card-color);
+  height: fit-content;
+  font-family: "Nunito", sans-serif;
+  color: var(--color-3);
+}
+
+.botton-right {
+  justify-self: flex-end;
+  align-self: flex-end;
+}
+
+/* 
+For new watchlist button at bottom
+https://stackoverflow.com/a/43880428
+*/
+.content {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 300px;
+}
+
+.content .upper {
+  justify-content: normal;
+}

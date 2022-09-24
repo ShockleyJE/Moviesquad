@@ -1,0 +1,674 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital@0;1&display=swap");
+
+:root {
+  --main-bg-color: #f3f3f3;
+  --main-card-color: #ffffff;
+  --main-text-color: #2f3e46;
+  --main-highlight-color: #84a98c;
+
+  --mid-bg-color: #52b788;
+  --login-hover: #5dd39e;
+  --signup-hover: #effae9;
+
+  --alert-text: #f72585;
+
+  /* title colored text */
+  --color-1: #2f3e46;
+  --color-2: #2a9a9f;
+  --color-3: #f1b211;
+  --color-4: #e07a5f;
+  --color-5: #81b29a;
+
+  display: flexbox;
+}
+
+body {
+  background-color: var(--main-bg-color);
+  color: var(--main-text-color);
+  font-family: "Roboto", sans-serif;
+}
+.completed {
+  text-decoration: line-through;
+  color: gray;
+}
+.not {
+  text-decoration: underline;
+}
+
+.card {
+  background-color: var(--main-card-color);
+  width: fit-content;
+  height: fit-content;
+  padding: 5rem;
+  border-radius: 20px;
+}
+
+.card-single {
+  align-self: center;
+  justify-self: center;
+}
+
+/* 
+===============
+partials --> navbar.ejs  styles
+=============== 
+*/
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 3rem;
+}
+
+.internal-nav a,
+h1,
+img {
+  color: var(--main-text-color);
+  font-size: 1rem;
+  font-weight: bold;
+  height: 100%;
+}
+
+#logo {
+  font-family: "Nunito", sans-serif;
+}
+
+nav a:hover {
+  color: var(--main-highlight-color);
+}
+.logo {
+  height: 1rem;
+}
+
+/* multi-colored text for the title */
+nav .title-wrapper {
+  background: var(--main-bg-color);
+  line-height: 1;
+  min-height: 100%;
+  display: grid;
+  place-items: center;
+  min-height: fit-content;
+}
+nav .index-description,
+#logo {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin: auto;
+  text-transform: uppercase;
+  background: linear-gradient(
+    219deg,
+    var(--color-1) 19%,
+    transparent 19%,
+    transparent 20%,
+    var(--color-2) 20%,
+    var(--color-2) 39%,
+    transparent 39%,
+    transparent 40%,
+    var(--color-3) 40%,
+    var(--color-3) 59%,
+    transparent 59%,
+    transparent 60%,
+    var(--color-4) 60%,
+    var(--color-4) 79%,
+    transparent 79%,
+    transparent 80%,
+    var(--color-5) 80%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* 
+===============
+partials --> footer.ejs  styles
+=============== 
+*/
+footer {
+  margin: 0;
+  text-align: center;
+}
+footer a {
+  text-decoration: underline;
+  color: var(--main-text-color);
+}
+
+/* 
+================
+Scrollbar
+================
+*/
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* 
+===============
+INDEX.ejs  styles
+=============== 
+*/
+a {
+  text-decoration: none;
+}
+section {
+  align-items: center;
+  justify-content: center;
+}
+section h1 {
+  color: var(--main-text-color);
+  font-size: 3rem;
+}
+.index-top {
+  display: flex;
+  background-color: #f3f3f3;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
+.index-description {
+  background-color: #ffffff;
+}
+.index-description h3 {
+  font-size: 1rem;
+}
+
+.index-description .login-container {
+  padding: 1rem 0;
+}
+
+.index-description .login-container input {
+  width: 100%;
+  height: 2rem;
+  margin: 0.25rem;
+}
+.index-description .login-container button {
+  width: 100%;
+  height: 2rem;
+}
+
+.divider-span {
+  text-transform: capitalize;
+  color: grey;
+}
+
+/* .index-description .login-container p,
+a {
+  padding-top: 2rem;
+  font-size: large;
+} */
+
+/* multi-colored text for the title */
+.title-wrapper {
+  background: var(--main-card-color);
+  line-height: 1;
+  min-height: 100%;
+  display: grid;
+  place-items: center;
+  min-height: fit-content;
+}
+.index-description h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin: auto;
+  text-transform: uppercase;
+  background: linear-gradient(
+    219deg,
+    var(--color-1) 19%,
+    transparent 19%,
+    transparent 20%,
+    var(--color-2) 20%,
+    var(--color-2) 39%,
+    transparent 39%,
+    transparent 40%,
+    var(--color-3) 40%,
+    var(--color-3) 59%,
+    transparent 59%,
+    transparent 60%,
+    var(--color-4) 60%,
+    var(--color-4) 79%,
+    transparent 79%,
+    transparent 80%,
+    var(--color-5) 80%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.index-top > div {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+section div img {
+  width: 100%;
+  object-fit: cover;
+}
+.index-top .description {
+  padding-top: 1rem;
+  font-size: 1.3rem;
+}
+section div h3 {
+  font-size: 1.3rem;
+}
+.btn {
+  display: flex;
+  color: var(--main-bg-color);
+  font-size: 1.3rem;
+  font-weight: bolder;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 50px;
+  text-decoration: none;
+  border-radius: 5px;
+}
+.login {
+  background-color: var(--mid-bg-color);
+}
+.login:hover {
+  background-color: var(--login-hover);
+}
+
+.signup {
+  background-color: var(--main-text-color);
+}
+.signup:hover {
+  background-color: var(--signup-hover);
+}
+.button-container {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin: 2rem 4rem;
+}
+.trending-shows {
+  display: flex;
+  flex-direction: column;
+}
+.trending-shows > div {
+  display: flex;
+  width: 100%;
+  overflow-x: scroll;
+}
+.star-rating span {
+  color: yellow;
+  font-size: 0.7rem;
+}
+.single-show-container {
+  width: 120px;
+  margin: 10px;
+  padding: 15px;
+  box-shadow: 0 0 8px 2px rgba(255, 255, 255, 0.2);
+  border: none;
+  border-radius: 25px;
+}
+.single-show-container h2 {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.single-show-container h3 {
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 5px 0;
+}
+.single-show-container h3 > span {
+  color: yellowgreen;
+}
+
+/* 
+===============
+login.ejs  styles
+=============== 
+*/
+#login-section {
+  width: auto;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form-container {
+  max-width: 400px;
+}
+.form-container form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.form-container h1 {
+  font-size: 2.5rem;
+}
+.form-container p,
+.form-container input {
+  margin: 15px 0;
+}
+.form-container input {
+  height: 35px;
+}
+.full-btn {
+  width: 100%;
+  background-color: var(--login-hover);
+  border: none;
+  border-radius: 5px;
+}
+.full-btn:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+.form-container a {
+  text-decoration: underline;
+  color: var(--main-text-color);
+}
+.underlined-input {
+  border: none;
+  outline: none;
+  border-bottom: 1px solid var(--login-hover);
+  color: var(--main-text-color);
+}
+.underlined-input:active {
+  outline: none;
+  border: none;
+}
+
+.alert {
+  color: var(--alert-text);
+}
+
+/* movie ejs page */
+.movieHeader {
+  box-shadow: 0 0 10px 1px rgb(255 255 255 / 20%);
+  margin-bottom: 12px;
+}
+
+.header-Container {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 20%;
+  width: 80%;
+}
+.header-Container .logo {
+  padding-top: 10px;
+}
+.header-Container .logout {
+  padding-top: 20px;
+  font-size: 30px;
+  font-family: "Nunito", sans-serif;
+}
+.header-Container .logout:visited {
+  color: #cad2c5;
+}
+.header-Container .logout:hover {
+  color: aquamarine;
+}
+.gallery-container {
+  height: auto;
+  width: auto;
+  row-gap: 10px;
+  column-gap: 2em;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.movie-card {
+  width: 130px;
+  height: auto;
+  position: relative;
+  margin-right: 20px;
+  row-gap: 10px;
+  column-gap: 2em;
+}
+.movieItem {
+  list-style: none;
+}
+
+.watchedMovie {
+  position: absolute;
+  bottom: 10px;
+  left: 20px;
+  font-size: 22px;
+  color: rgb(87, 121, 255);
+}
+.watchedMovie:hover {
+  color: rgb(124, 194, 255);
+}
+.unWatchedMovie {
+  position: absolute;
+  bottom: 10px;
+  left: 20px;
+  font-size: 22px;
+  color: rgb(255, 87, 87);
+}
+.unWatchedMovie:hover {
+  color: rgb(255, 121, 121);
+}
+.like {
+  position: absolute;
+  bottom: 10px;
+  left: 55px;
+  font-size: 22px;
+  color: rgb(87, 121, 255);
+}
+.like:hover {
+  color: rgb(124, 194, 255);
+}
+.unlike {
+  position: absolute;
+  bottom: 10px;
+  left: 54px;
+  font-size: 22px;
+  color: rgb(255, 161, 19);
+}
+.unlike:hover {
+  color: rgb(255, 88, 88);
+}
+
+.del {
+  position: absolute;
+  bottom: 10px;
+  right: 15px;
+  font-size: 22px;
+  color: rgb(87, 121, 255);
+  opacity: 100%;
+}
+.del:hover {
+  color: rgb(124, 255, 141);
+}
+
+.icon-background {
+  opacity: 0%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 120px;
+  height: 180px;
+}
+
+.icon-background:hover {
+  opacity: 100%;
+  background: rgba(230, 230, 230, 0.8);
+  box-shadow: 0 0 10px #9ecaed;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 128px;
+  height: 192px;
+  border-radius: 0.25rem;
+}
+.movie-image {
+  border-radius: 0.25rem;
+}
+.movie-image:hover {
+  opacity: 50%;
+}
+
+[data-tab-content] {
+  display: none;
+}
+
+.active[data-tab-content] {
+  display: block;
+}
+
+body {
+  min-width: 500px;
+  /* This fixes it */
+  /* background-color: #ffffff; */
+}
+
+.tabs {
+  margin-top: 8px;
+  padding-top: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 0.25rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+}
+
+.tab {
+  text-align: center;
+  cursor: pointer;
+  padding: 12px;
+  width: 8%;
+  min-width: 80px;
+  background-color: rgba(1, 52, 1, 0.9);
+  border: 1px solid rgba(181, 180, 180, 0.1);
+}
+
+.tab.active {
+  opacity: 100%;
+  width: 10%;
+  background-color: rgba(0, 90, 0, 0.9);
+}
+#left {
+  border-top-left-radius: 3rem;
+  border-bottom-left-radius: 3rem;
+  border: 1px solid rgba(181, 180, 180, 0.5);
+}
+#left.active {
+  border-left: 1px solid rgba(255, 255, 255, 0.9);
+  border-right: 1px solid rgba(198, 196, 196, 0.9);
+  border-top: 1px solid rgba(255, 255, 255, 0.9);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.9);
+}
+#right {
+  border-bottom-right-radius: 3rem;
+  border-top-right-radius: 3rem;
+  border: 1px solid rgba(181, 180, 180, 0.5);
+}
+#right.active {
+  border-left: 1px solid rgba(140, 140, 140, 0.9);
+  border-right: 1px solid rgba(255, 255, 255, 0.9);
+  border-top: 1px solid rgba(255, 255, 255, 0.9);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.9);
+}
+
+.tab:hover {
+  background-color: rgb(50, 251, 157);
+}
+
+.tab-content {
+  background-color: rgb(9, 32, 44);
+}
+
+/* formstuff */
+.formInput {
+  margin-left: 10%;
+}
+#myInput {
+  margin-top: 8px;
+  text-align: center;
+  width: 80%;
+  border: 2px solid rgba(43, 106, 3, 0.443);
+  border-radius: 0.25rem;
+  font-size: 24px;
+}
+#myinput:active {
+  background-color: red;
+}
+#submitButton {
+  border: 2px solid white;
+  background-color: rgb(255, 255, 255);
+  font-size: 22px;
+  border-radius: 0.25rem;
+  width: 50px;
+}
+
+#myInputautocomplete-list {
+  background-color: rgb(255, 255, 255);
+  width: 80%;
+  color: black;
+}
+#auto-item {
+  font-size: 22px;
+}
+#auto-item:hover {
+  background-color: rgb(0, 136, 255);
+}
+
+.recommend {
+  background-color: #09202c;
+}
+.recommendTitle h1,
+.watchTitle h1 {
+  width: 100vw;
+  margin: 35px, 0, 35px, 0;
+  background-color: rgb(0, 107, 78);
+  font-size: 26px;
+  text-align: center;
+}
+
+#reclist,
+#watchlist {
+  display: grid;
+  grid-auto-flow: column;
+  height: 250px;
+  gap: 15px;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  background-color: var(--main-bg-color);
+}
+.movie-cardrec,
+.movie-cardwatch {
+  padding: 20px;
+  width: 128px;
+}
+
+/* breakpoints! */
+@media all and (min-width: 800px) {
+  section {
+    display: flex;
+  }
+  .index-description {
+    width: 40%;
+  }
+  .index-pic {
+    width: 60%;
+  }
+  .index-top > div {
+    padding: 5rem;
+    border-radius: 20px;
+  }
+  .index-description h1 {
+    font-size: 4rem;
+  }
+  .index-description h3 {
+    font-size: 1.3rem;
+  }
+}
+
+/* * {
+    outline: 1px solid red;
+  } */
