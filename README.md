@@ -2,7 +2,7 @@
 
 a collaborative, cross-platform & multi-service watchlist designed to respect your time and get out of your squads way
 
-![Screen shot](docs/promotional/home.PNG)
+![Screen shot](/docs/promotional/home.PNG)
 
 ## about
 
