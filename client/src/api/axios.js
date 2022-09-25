@@ -7,4 +7,7 @@ export default axios.create({
   // `withCredentials` indicates whether or not cross-site Access-Control requests
   // should be made using credentials
   withCredentials: false, // default
+  headers: {
+    "Content-type": "application/json",
+  },
 });
