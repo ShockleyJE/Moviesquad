@@ -7,7 +7,7 @@ const AuthedNavbar = () => {
   const auth = useAuth();
   const usr = auth.user;
   return (
-    <div className="w-screen h-20 bg-transparent flex content-center justify-between text-aquamarine pl-8 pr-8 bg-gradient-to-r from-purple-500 to-pink-500">
+    <div className="pl-8 pr-8 h-20 bg-transparent flex content-center justify-between text-aquamarine bg-gradient-to-r from-purple-500 to-pink-500">
       <div className="self-center">
         <Link to="/watchlists" className="">
           <Logo className=""></Logo>

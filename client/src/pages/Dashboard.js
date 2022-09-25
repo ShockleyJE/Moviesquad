@@ -2,63 +2,44 @@ import React, { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthProvider";
 import { Navigate } from "react-router-dom";
 import AuthedNavbar from "../components/navbar/AuthedNavbar";
+import Watchlists from "../components/watchlists/Watchlists";
+import { getAllWatchlists } from "../api/watchlistAPI.js";
+import NewWatchlist from "../components/watchlists/NewWatchlist";
 
 const Dashboard = () => {
   const auth = useAuth();
 
   // This is example code to be used with example code below, to toggle a create watchlist form component
-  //const [showAddTask, setShowAddTask] = React.useState(true);
+  const [showAdd, setAdd] = React.useState(false);
   // End example
 
-  // This is example code to demonstrate the watchlist components
-  const [wl, setWatchlists] = React.useState([
-    {
-      _id: "632121cee05feb47187d563a",
-      membersID: ["632121cee05feb47187d5637"],
-      adminsID: ["632121cee05feb47187d5637"],
-      moviesID: [],
-      name: "My Watchlist",
-      ownerID: "632121cee05feb47187d5637",
-      __v: 0,
-    },
-    {
-      _id: "63262e573ba01f6438e73b07",
-      membersID: ["63262e573ba01f6438e73b04"],
-      adminsID: ["63262e573ba01f6438e73b04"],
-      moviesID: [],
-      name: "Shared Watchlist",
-      ownerID: "63262e573ba01f6438e73b04",
-      __v: 0,
-    },
-    {
-      _id: "63262e573ba01f6438e73b07",
-      membersID: ["63262e573ba01f6438e73b04"],
-      adminsID: ["63262e573ba01f6438e73b04"],
-      moviesID: [],
-      name: "Another Watchlist",
-      ownerID: "63262e573ba01f6438e73b04",
-      __v: 0,
-    },
-  ]);
-  const addWatchlist = ({ wlname }) => {
-    let wlitem = {
-      _id: Math.floor(Math.random() * 10000000) + 1,
-      membersID: ["63262e573ba01f6438e73b04"],
-      adminsID: ["63262e573ba01f6438e73b04"],
-      moviesID: [],
-      name: wlname,
-      ownerID: "63262e573ba01f6438e73b04",
-      __v: 0,
-    };
+  const [wl, setWatchlists] = React.useState({
+    yours: [],
+    member: [],
+    admin: [],
+  });
 
-    setWatchlists(wl.concat([wlitem]));
+  const refreshWatchlists = () => {
+    getAllWatchlists(auth.user).then((val) => setWatchlists(val));
   };
+
+  //initialize watchlists via api on load
+  useEffect(() => {
+    refreshWatchlists();
+  }, []);
+
   const deleteWatchlist = ({ _id }) => {
     setWatchlists(
       wl.filter((watchlist) => {
         return watchlist._id != _id;
       })
     );
+  };
+
+  // we pass this for the watchlist add button
+  const setAddForm = () => {
+    console.log("set add form");
+    setAdd(true);
   };
 
   // End example
@@ -80,36 +61,65 @@ const Dashboard = () => {
   // // watchlists.watchlists.map((x) => console.log(x));
   // console.log("Watchlist - Just logged data after useEffect");
 
+  const [what, setWhat] = useState("movie nights");
+  const [counter, setCounter] = useState(0);
+  //toggle this to turn on the whatis update
+  const [isActive, setIsActive] = useState(false);
+
+  console.log("In dashboard, calling API to fetch watchlists");
+
   if (!auth.isauthed()) {
     // Redirect
     console.log("need to redirect unauthed user");
     Navigate("/");
   } else {
     return (
-      <div>
-        <div className="h-fit">
+      <div className="w-[99vw] max-h-[99vh]">
+        <div className="">
           <AuthedNavbar></AuthedNavbar>
         </div>
         {/* placeholder layout  */}
-        <div className="flex">
-          <div class="w-2/3 bg-red-700 h-screen">
-            {/* This is example code to demonstrate use of the watchlist component  with the above */}
-
-            {/* <Watchlists
-            type="Personal"
-            watchlists={wl}
-            deleteWatchlist={deleteWatchlist}
-          ></Watchlists>
-          <Watchlists
-            type="Shared"
-            watchlists={wl}
-            deleteWatchlist={deleteWatchlist}
-          ></Watchlists> */}
-
-            {/* NOTE 1: This is example code to show how to do a ternary without else, in the example of toggling the create watchlist form */}
-            {/* {showAddTask && <NewWatchlist onAdd={addWatchlist}></NewWatchlist>} */}
+        <div className="flex m-4">
+          <div class="lg:w-2/3 w-full bg-transparent h-screen pr-4">
+            {/* NOTE: To enable the spillover behavior again, change all three values for h- to h-1/3 */}
+            <div class="h-5/12 bg-inherit">
+              <Watchlists
+                type="Personal"
+                watchlists={wl.yours}
+                deleteWatchlist={deleteWatchlist}
+                setAddForm={setAddForm}
+                refreshWatchlists={refreshWatchlists}
+              ></Watchlists>
+            </div>
+            <div class="h-fit bg-inherit pt-4">
+              <Watchlists
+                type="Shared"
+                watchlists={wl.member}
+                deleteWatchlist={deleteWatchlist}
+                setAddForm={setAddForm}
+                refreshWatchlists={refreshWatchlists}
+              ></Watchlists>
+            </div>
+            <div class="h-fit bg-inherit pt-4">
+              <Watchlists
+                type="Admin"
+                watchlists={wl.admin}
+                deleteWatchlist={deleteWatchlist}
+                setAddForm={setAddForm}
+                refreshWatchlists={refreshWatchlists}
+              ></Watchlists>
+            </div>
           </div>
-          <div class="w-1/3 bg-red-400 h-screen"></div>
+
+          <div class="lg:w-1/3 bg-transparent h-screen">
+            {/* NOTE 1: This is example code to show how to do a ternary without else, in the example of toggling the create watchlist form */}
+            {showAdd == true && (
+              <NewWatchlist
+                refreshWatchlists={refreshWatchlists}
+                setAdd={setAdd}
+              ></NewWatchlist>
+            )}
+          </div>
         </div>
       </div>
     );
