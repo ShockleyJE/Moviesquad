@@ -82,7 +82,7 @@ const Dashboard = () => {
         <div className="flex m-4">
           <div class="lg:w-2/3 w-full bg-transparent h-screen pr-4">
             {/* NOTE: To enable the spillover behavior again, change all three values for h- to h-1/3 */}
-            <div class="h-5/12 bg-inherit">
+            <div class="h-1/3 bg-inherit">
               <Watchlists
                 type="Personal"
                 watchlists={wl.yours}
@@ -91,7 +91,7 @@ const Dashboard = () => {
                 refreshWatchlists={refreshWatchlists}
               ></Watchlists>
             </div>
-            <div class="h-fit bg-inherit pt-4">
+            <div class="h-1/3 bg-inherit pt-4">
               <Watchlists
                 type="Shared"
                 watchlists={wl.member}
@@ -100,7 +100,7 @@ const Dashboard = () => {
                 refreshWatchlists={refreshWatchlists}
               ></Watchlists>
             </div>
-            <div class="h-fit bg-inherit pt-4">
+            <div class="h-1/3 bg-inherit pt-4">
               <Watchlists
                 type="Admin"
                 watchlists={wl.admin}
