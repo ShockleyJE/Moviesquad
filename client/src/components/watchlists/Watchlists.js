@@ -11,14 +11,14 @@ const Watchlists = ({
 }) => {
   // NOTE: Disable this guard clause to enable spillover
 
-  if (type !== "Personal") {
-    return (
-      <div className="space-y-4 rounded-lg dark:bg-gray-200 dark:text-gray-800 p-4">
-        <span class="text-3xl">{type} Watchlists</span>
-        <p>Stay tuned for shared and social features, coming October 8th</p>
-      </div>
-    );
-  }
+  //if (type !== "Personal") {
+  //  return (
+  //    <div className="space-y-4 rounded-lg dark:bg-gray-200 dark:text-gray-800 p-4">
+  //      <span class="text-3xl">{type} Watchlists</span>
+  //      <p>Stay tuned for shared and social features, coming October 8th</p>
+  //    </div>
+  //  );
+  //}
 
   return (
     <div className="space-y-4 rounded-lg dark:bg-gray-200 dark:text-gray-800 border-gray-800 shadow border-solid p-4">
