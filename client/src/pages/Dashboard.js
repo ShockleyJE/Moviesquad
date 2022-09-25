@@ -100,15 +100,6 @@ const Dashboard = () => {
                 refreshWatchlists={refreshWatchlists}
               ></Watchlists>
             </div>
-            <div class="h-fit bg-inherit pt-4">
-              <Watchlists
-                type="Admin"
-                watchlists={wl.admin}
-                deleteWatchlist={deleteWatchlist}
-                setAddForm={setAddForm}
-                refreshWatchlists={refreshWatchlists}
-              ></Watchlists>
-            </div>
           </div>
 
           <div class="lg:w-1/3 bg-transparent h-screen">
