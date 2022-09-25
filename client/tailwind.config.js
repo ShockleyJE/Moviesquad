@@ -22,6 +22,10 @@ module.exports = {
   },
   plugins: [
     require("tailwind-scrollbar-hide"),
+    require("daisyui"),
     // ...
   ],
+  daisyui: {
+    themes: ["light", "dark"],
+  },
 };
