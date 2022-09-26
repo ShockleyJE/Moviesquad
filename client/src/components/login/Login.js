@@ -58,7 +58,7 @@ const Login = () => {
     <div class="max-w-4xl mx-auto">
       <div class="bg-white shadow-md border border-gray-200 rounded-lg max-w-3xl p-4 sm:p-8 lg:p-12 dark:bg-white dark:border-gray-300">
         <form class="space-y-6" onSubmit={handleSubmit}>
-          <h2 className="text-3xl text-grey-700">Sign in</h2>
+          <h2 className="text-3xl text-grey-700 dark:text-gray-800">Sign in</h2>
           <p ref={errRef} className={errorMsg ? "text-red-600" : "hidden"}>
             {errorMsg}
           </p>

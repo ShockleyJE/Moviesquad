@@ -29,16 +29,20 @@ const Watchlists = ({
           onClick={() => setAddForm()}
         ></FaPlus>
       </div>
-      {watchlists.map((wl) => (
-        <Watchlist
-          name={wl.name}
-          _id={wl._id}
-          refreshWatchlists={refreshWatchlists}
-        ></Watchlist>
+      <ul className="h-[200px] overflow-scroll space-y-3 scrollbar-hide">
+        {watchlists.map((wl) => (
+          <li>
+            <Watchlist
+              name={wl.name}
+              _id={wl._id}
+              refreshWatchlists={refreshWatchlists}
+            ></Watchlist>
+          </li>
 
-        // This is OK-
-        // <p>{wl.name}</p>
-      ))}
+          // This is OK-
+          // <p>{wl.name}</p>
+        ))}
+      </ul>
     </div>
   );
 };

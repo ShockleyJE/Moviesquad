@@ -43,11 +43,11 @@ const Home = () => {
                   </h1>
                 </div>
                 <div className="flex justify-center">
-                  <div className="text-5xl text-center text-gray-700">
+                  <div className="text-5xl text-center text-gray-700 dark:text-gray-400">
                     <h2 className=" text-center inline">Welcome to better </h2>
                     <span className="inline">{what}</span>
                     <h2 className="inline"> where </h2>
-                    <h2 className="text-black inline font-bold">
+                    <h2 className="text-black dark:text-gray-400 inline font-bold">
                       your squad comes first
                     </h2>
                   </div>

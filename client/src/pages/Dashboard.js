@@ -74,7 +74,7 @@ const Dashboard = () => {
     Navigate("/");
   } else {
     return (
-      <div className="w-[99vw] max-h-[99vh]">
+      <div className="w-full max-h-full">
         <div className="">
           <AuthedNavbar></AuthedNavbar>
         </div>
@@ -82,7 +82,7 @@ const Dashboard = () => {
         <div className="flex m-4">
           <div class="lg:w-2/3 w-full bg-transparent h-screen pr-4">
             {/* NOTE: To enable the spillover behavior again, change all three values for h- to h-1/3 */}
-            <div class="h-5/12 bg-inherit">
+            <div class="bg-inherit">
               <Watchlists
                 type="Personal"
                 watchlists={wl.yours}

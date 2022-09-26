@@ -5,7 +5,7 @@ import Logo from "../logo/Logo";
 const UnauthedNavbar = () => {
   return (
     // top-0 fixed
-    <div className="w-screen h-20 bg-transparent flex content-center justify-between text-aquamarine pl-8 pr-8 bg-gradient-to-r from-purple-500 to-pink-500">
+    <div className="h-20 bg-transparent flex content-center justify-between text-aquamarine pl-8 pr-8 bg-gradient-to-r from-purple-500 to-pink-500">
       <div className="self-center">
         <Link to="/" className="">
           <Logo className=""></Logo>
