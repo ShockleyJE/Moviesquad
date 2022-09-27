@@ -35,7 +35,7 @@ const Home = () => {
         </div>
         <div className="relative flex items-center justify-center">
           <div className="w-full md:w-2/3 self-center max-w-xl lg:max-w-2xl h-full">
-            <div class="flex items-center justify-center h-screen">
+            <div class="flex items-center justify-center h-[80vh]">
               <div className="flex-row">
                 <div className="flex justify-center">
                   <h1 className="text-2xl bold">

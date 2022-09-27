@@ -5,6 +5,7 @@ const User = require("./User");
 
 const WatchlistSchema = new mongoose.Schema({
   name: { type: String },
+  public: { type: Boolean, default: false },
   ownerID: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   creatorID: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   //Mongoose Multiple Foreign Key

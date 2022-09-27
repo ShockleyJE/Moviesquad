@@ -1,5 +1,6 @@
 const fetch = require("node-fetch");
 const Movie = require("../models/Movie");
+const Watchlist = require("../models/Watchlist");
 
 module.exports = {
   getMovies: async (req, res) => {
@@ -23,6 +24,30 @@ module.exports = {
         left: moviesLeft,
         user: req.user,
       });
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  getMoviesByWatchlist: async (req, res) => {
+    console.log(`getMoviesByWatchlist, wl: ${req.params.id}`);
+    console.log(req.body.user);
+    try {
+      let theMovies = [];
+      const theWatchlist = await Watchlist.findOne({
+        _id: req.params.id,
+      });
+      const movieItems = await Movie.find({
+        _id: { $in: theWatchlist.moviesID },
+        deleted: false,
+      });
+      console.log(
+        `Found ${movieItems.length} items for watchlist ID ${req.params.id}`
+      );
+      res.end(
+        JSON.stringify({
+          movies: movieItems,
+        })
+      );
     } catch (err) {
       console.log(err);
     }

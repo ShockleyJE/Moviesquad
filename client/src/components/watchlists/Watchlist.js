@@ -21,10 +21,7 @@ const Watchlist = ({ name, _id, refreshWatchlists }) => {
         <Link to={`edit/${_id}`} className="">
           <FaEdit className="text-gray-600" />
         </Link>
-        <FaTimes
-          className="dark:text-red-600 text-l"
-          onClick={() => onDelete()}
-        />
+        <FaTimes className="text-red-600 text-l" onClick={() => onDelete()} />
       </div>
     </div>
   );
