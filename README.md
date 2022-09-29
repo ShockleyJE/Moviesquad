@@ -1,6 +1,8 @@
-# Moviesquad
+# [moviesquad](https://moviesquad.net/)
 
 a collaborative, cross-platform & multi-service watchlist designed to respect your time and get out of your squads way
+
+[see it here](https://moviesquad.net/)
 
 ![Screen shot](docs/promotional/home.PNG)
 
@@ -15,8 +17,8 @@ Refactor currently in progress from EJS templated views -> React. The following 
 - [x] Login
 - [x] Signup
 - [x] Authentication & protected routes
-- [ ] (EJS -> React: In progress) Watchlist dashboard
-- [ ] (EJS -> React: In progress) Create new watchlist
+- [x] (EJS -> React: In progress) Watchlist dashboard
+- [x] (EJS -> React: In progress) Create new watchlist
 - [ ] (EJS -> React: In progress) Assign movies to watchlist
 - [ ] Manage your profile
 - [ ] Assign users to watchlist
@@ -45,7 +47,29 @@ Moviesquad began as a hackathon project, Showlist. Moviesquad established its ow
 
 ## technical
 
-### how to: run
+#### how to: run locally
+
+```
+# Install dependencies for server
+
+npm install
+
+# Install dependencies for client
+
+npm run client-install
+
+# Run the client & server with concurrently
+
+npm run dev
+
+# Run the Express server only
+
+npm run server
+
+# Run the React client only
+
+npm run client
+```
 
 #### docker build process
 
@@ -53,7 +77,7 @@ Moviesquad began as a hackathon project, Showlist. Moviesquad established its ow
 
 `docker build . -t shockleyje/moviesquad-server`
 
-`docker run -p 49160:2121 -i shockleyje/moviesquad-server`
+`docker run -p 49160:8080 -i shockleyje/moviesquad-server`
 
 ##### client
 
@@ -88,6 +112,8 @@ cd to `/client` and stay in `/` for client and server respectively, then `npm in
 - Single point of configuration for server and backend
 
 - Persist login state between app sessions
+
+- nginx server for static files
 
 **features**
 
