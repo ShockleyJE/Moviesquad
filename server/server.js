@@ -15,7 +15,12 @@ const apiRoutes = require("./routes/api");
 const path = require("path");
 const cors = require("cors");
 
-require("dotenv").config({ path: "./server/config/.env" });
+if (process.env.NODE_ENV == "production") {
+  // Set static folder
+  require("dotenv").config({ path: "./config/.env" });
+} else {
+  require("dotenv").config({ path: "./config/.env" });
+}
 
 // Passport config
 require(path.join(__dirname, "config", "passport"))(passport);
