@@ -1,10 +1,11 @@
 import React from "react";
 import AuthedNavbar from "../components/navbar/AuthedNavbar";
 import { getWatchlist } from "../api/watchlistAPI";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { useAuth } from "../context/AuthProvider";
 import Movies from "../components/movie/Movies";
+import axios from "axios";
 
 const WatchlistDetails = ({ _id, name }) => {
   const auth = useAuth();
@@ -14,6 +15,9 @@ const WatchlistDetails = ({ _id, name }) => {
   const [wlNewName, setWlNewName] = React.useState(null);
   const [shared, setShared] = React.useState(false);
   const [searchMovie, setSearchMovie] = React.useState("");
+  const [searchSuggestions, setSearchSuggestions] = React.useState("");
+
+  const userRef = useRef();
 
   const updateWl = () => {
     //deleteWatchlist(auth.user, _id).then(() => refreshWatchlists());
@@ -27,9 +31,40 @@ const WatchlistDetails = ({ _id, name }) => {
     });
   }, []);
 
+  //useEffect(() => {
+  //  const URL = `https://api.themoviedb.org/3/search/multi?api_key=02d973db50942afc74c9f25f8957b6f3&query=${searchMovie}`;
+  //  //fetch(URL).then((res) => console.log(res));
+  //  // .then((result) => setSearchSuggestions(result));
+  //  let { data } = fetch(URL)
+  //    .then((res) => res.json())
+  //    .then((data) => {
+  //      console.log(data);
+  //      return data;
+  //    });
+  //  setSearchSuggestions(data);
+  //}, [searchMovie]);
+
+  useEffect(() => {
+    const URL = `https://api.themoviedb.org/3/search/multi?api_key=02d973db50942afc74c9f25f8957b6f3&query=${searchMovie}`;
+    //fetch(URL).then((res) => console.log(res));
+    // .then((result) => setSearchSuggestions(result));
+    let { data } = fetch(URL)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        return data;
+      });
+    setSearchSuggestions(data);
+  }, [searchMovie]);
+
   const toggleShare = () => {
     console.log("toggling share");
   };
+
+  //focus on movies search first
+  useEffect(() => {
+    userRef.current.focus();
+  }, []);
 
   const searchMovieHandler = (val) => {};
 
@@ -69,7 +104,12 @@ const WatchlistDetails = ({ _id, name }) => {
             <div className="basis-1/2 flex flex-col rounded-lg dark:bg-gray-300 dark:text-gray-700 shadow p-4 justify-between">
               <span className=" text-xl">Movies</span>
               <div className="flex-row w-full">
-                <input type="text basis-5/6 rounded-md"></input>
+                <input
+                  type="text basis-5/6 rounded-md"
+                  value={searchMovie}
+                  ref={userRef}
+                  onChange={(e) => setSearchMovie(e.target.value)}
+                ></input>
                 <button className="btn-primary basis-1/6 w-8 rounded-md m-2">
                   +
                 </button>

@@ -28,6 +28,7 @@ export async function getMoviesByWatchlist(user, _id) {
     let message = {
       user: user,
     };
+
     const { data } = await axios.get(URL, JSON.stringify(message));
     try {
       console.log(
