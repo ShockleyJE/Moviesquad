@@ -5,6 +5,7 @@ import { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { useAuth } from "../context/AuthProvider";
 import Movies from "../components/movie/Movies";
+import Autosuggest from "react-autosuggest";
 import axios from "axios";
 
 const WatchlistDetails = ({ _id, name }) => {
@@ -15,7 +16,7 @@ const WatchlistDetails = ({ _id, name }) => {
   const [wlNewName, setWlNewName] = React.useState(null);
   const [shared, setShared] = React.useState(false);
   const [searchMovie, setSearchMovie] = React.useState("");
-  const [searchSuggestions, setSearchSuggestions] = React.useState("");
+  const [searchSuggestions, setSearchSuggestions] = React.useState([]);
 
   const userRef = useRef();
 
@@ -31,30 +32,26 @@ const WatchlistDetails = ({ _id, name }) => {
     });
   }, []);
 
-  //useEffect(() => {
-  //  const URL = `https://api.themoviedb.org/3/search/multi?api_key=02d973db50942afc74c9f25f8957b6f3&query=${searchMovie}`;
-  //  //fetch(URL).then((res) => console.log(res));
-  //  // .then((result) => setSearchSuggestions(result));
-  //  let { data } = fetch(URL)
-  //    .then((res) => res.json())
-  //    .then((data) => {
-  //      console.log(data);
-  //      return data;
-  //    });
-  //  setSearchSuggestions(data);
-  //}, [searchMovie]);
-
   useEffect(() => {
     const URL = `https://api.themoviedb.org/3/search/multi?api_key=02d973db50942afc74c9f25f8957b6f3&query=${searchMovie}`;
-    //fetch(URL).then((res) => console.log(res));
-    // .then((result) => setSearchSuggestions(result));
     let { data } = fetch(URL)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        return data;
+        try {
+          //set the suggestions to only those which are valid
+          console.log(data);
+          let valid = data.results.filter(
+            (ele) => ele.original_title != undefined
+          );
+          let suggArr = valid.map((ele) => {
+            return { name: ele.original_title };
+          });
+          console.log(suggArr);
+          setSearchSuggestions(suggArr);
+        } catch (e) {
+          console.log(e);
+        }
       });
-    setSearchSuggestions(data);
   }, [searchMovie]);
 
   const toggleShare = () => {
