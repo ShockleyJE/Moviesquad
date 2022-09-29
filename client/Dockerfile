@@ -14,32 +14,31 @@ FROM node:16
 # RUN create dockeruser &\
 # create dir + chown to dockeruser
 # USER dockeruser
-# Expose
 # do shit
 # .. npm build (look into npm package serve)
 
-RUN adduser dockeruser
+#RUN adduser dockeruser
 
-RUN mkdir /moviesquad
+#RUN mkdir /moviesquad
 
-RUN chown dockeruser /moviesquad
+#RUN chown dockeruser /moviesquad
 
-USER dockeruser
+#USER dockeruser
 
 # Create app directory
-WORKDIR /moviesquad
+WORKDIR /usr/src/client
 
 # Install app dependencies
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
 # where available (npm@5+)
 COPY package*.json ./
 
-RUN npm install
-# If you are building your code for production
-# RUN npm ci --only=production
+RUN npm ci --only=production
 
 # Bundle app source
 COPY . .
 
-EXPOSE 3079
-CMD [ "npm", "start" ]
+EXPOSE 443
+EXPOSE 8080
+
+CMD [ "react-scripts", "start" ]

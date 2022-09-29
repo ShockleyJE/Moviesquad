@@ -47,9 +47,21 @@ Moviesquad began as a hackathon project, Showlist. Moviesquad established its ow
 
 ### how to: run
 
+#### docker build process
+
+##### server
+
+`docker build . -t shockleyje/moviesquad-server`
+
+`docker run -p 49160:2121 -i shockleyje/moviesquad-server`
+
+##### client
+
 #### configuration
 
 In `config/config.env`
+
+`docker build . -t shockleyje/moviesquad-client`
 
 ```
 PORT=<int, used for server>

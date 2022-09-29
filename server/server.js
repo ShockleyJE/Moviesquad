@@ -15,16 +15,23 @@ const apiRoutes = require("./routes/api");
 const path = require("path");
 const cors = require("cors");
 
-require("dotenv").config({ path: "./server/config/.env" });
+if (process.env.NODE_ENV == "production") {
+  // Set static folder
+  require("dotenv").config({ path: "./config/.env" });
+} else {
+  require("dotenv").config({ path: "./config/.env" });
+}
 
 // Passport config
 require(path.join(__dirname, "config", "passport"))(passport);
 
 connectDB();
 
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "ejs");
-app.use(express.static(path.join(__dirname, "public")));
+// old ejs conf
+//app.set("views", path.join(__dirname, "views"));
+//app.set("view engine", "ejs");
+//app.use(express.static(path.join(__dirname, "public")));
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(logger("dev"));
@@ -37,24 +44,6 @@ app.use(
     store: new MongoStore({ mongooseConnection: mongoose.connection }),
   })
 );
-
-//cors configuration
-//due to issues on /api routes. Stats for some reason was fine
-//via https://www.codingdeft.com/posts/nodejs-react-cors-error/
-//const whitelist = ["http://localhost:3000"];
-//
-//const corsOptions = {
-//  origin: function (origin, callback) {
-//    if (!origin || whitelist.includes(origin)) {
-//      callback(null, true);
-//    } else {
-//      callback(new Error("Not allowed by CORS"));
-//    }
-//  },
-//
-//  credentials: true,
-//};
-//app.use(cors(corsOptions));
 
 app.use(cors());
 
@@ -69,6 +58,15 @@ app.use("/movies", movieRoutes);
 app.use("/watchlists", watchlistRoutes);
 app.use("/stats", statsRoutes);
 app.use("/api", apiRoutes);
+
+// Serve static assets in production for React
+if (process.env.NODE_ENV == "production") {
+  // Set static folder
+  app.use(express.static("client/build"));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
 
 app.listen(process.env.PORT || PORT, () => {
   console.log("Server is running, you better catch it!");

@@ -23,6 +23,29 @@ export async function getAllWatchlists(user) {
     console.log(err);
   }
 }
+
+export async function getWatchlist(user, _id) {
+  const URL = `watchlists/${_id}`;
+  try {
+    let message = {
+      user: user,
+      _id: _id,
+    };
+    const { data } = await axios.get(URL, JSON.stringify(message));
+    try {
+      console.log(
+        `submitted watchlist get for ${_id}, received promise from request:`
+      );
+      console.log(data);
+      return data;
+    } catch (err) {
+      console.log(err);
+    }
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 export async function createWatchlist(user, name) {
   const URL = `watchlists`;
   try {

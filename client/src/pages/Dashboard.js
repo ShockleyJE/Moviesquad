@@ -42,25 +42,6 @@ const Dashboard = () => {
     setAdd(true);
   };
 
-  // End example
-
-  // This is working example code  to show the use of an api call to catch the users watchlist
-  // from the /api/ route. Note, this is not yet the users watchlist! It is a list of all watchlists
-  // made before the fetch -> axios switch but similar concept
-
-  // const [wl, setWatchlists] = React.useState([]);
-  // console.log("Watchlist - Finna fetch");
-  // React.useEffect(() => {
-  //   fetch("api/watchlists/")
-  //     // .then((res) => console.log(res))
-  //     .then((res) => res.json())
-  //     .then((data) => setWatchlists(data));
-  // }, []);
-  // console.log("Watchlist - Finished fetch");
-  // console.log(wl);
-  // // watchlists.watchlists.map((x) => console.log(x));
-  // console.log("Watchlist - Just logged data after useEffect");
-
   const [what, setWhat] = useState("movie nights");
   const [counter, setCounter] = useState(0);
   //toggle this to turn on the whatis update
@@ -74,13 +55,13 @@ const Dashboard = () => {
     Navigate("/");
   } else {
     return (
-      <div className="w-full max-h-full">
+      <div className="w-full">
         <div className="">
           <AuthedNavbar></AuthedNavbar>
         </div>
         {/* placeholder layout  */}
         <div className="flex m-4">
-          <div class="lg:w-2/3 w-full bg-transparent h-screen pr-4">
+          <div class="lg:w-2/3 h-2/3 w-full bg-transparent pr-4">
             {/* NOTE: To enable the spillover behavior again, change all three values for h- to h-1/3 */}
             <div class="bg-inherit">
               <Watchlists
@@ -102,7 +83,7 @@ const Dashboard = () => {
             </div>
           </div>
 
-          <div class="lg:w-1/3 bg-transparent h-screen">
+          <div class="lg:w-1/3 bg-transparent">
             {/* NOTE 1: This is example code to show how to do a ternary without else, in the example of toggling the create watchlist form */}
             {showAdd == true && (
               <NewWatchlist

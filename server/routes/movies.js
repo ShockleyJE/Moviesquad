@@ -5,6 +5,8 @@ const { ensureAuth } = require("../middleware/auth");
 
 router.get("/", ensureAuth, moviesController.getMovies);
 
+router.get("/watchlist/:id", moviesController.getMoviesByWatchlist);
+
 router.post("/createMovie", moviesController.createMovie);
 
 router.put("/markWatched", moviesController.markWatched);

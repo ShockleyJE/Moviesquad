@@ -29,7 +29,7 @@ const Watchlists = ({
           onClick={() => setAddForm()}
         ></FaPlus>
       </div>
-      <ul className="h-[200px] overflow-scroll space-y-3 scrollbar-hide">
+      <ul className="max-h-[60vh] overflow-scroll space-y-3 scrollbar-hide">
         {watchlists.map((wl) => (
           <li>
             <Watchlist
