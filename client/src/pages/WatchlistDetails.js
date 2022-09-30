@@ -5,7 +5,7 @@ import { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { useAuth } from "../context/AuthProvider";
 import Movies from "../components/movie/Movies";
-import Autosuggest from "react-autosuggest";
+import Autosuggesterino from "../components/autosuggest/Autosuggesterino";
 import axios from "axios";
 
 const WatchlistDetails = ({ _id, name }) => {
@@ -107,6 +107,20 @@ const WatchlistDetails = ({ _id, name }) => {
                   ref={userRef}
                   onChange={(e) => setSearchMovie(e.target.value)}
                 ></input>
+                {/* <Autosuggest
+                  suggestions={searchSuggestions}
+                  onSuggestionsFetchRequested={updateSuggestions}
+                  onSuggestionsClearRequested={clearSuggestions}
+                  getSuggestionValue={getSuggestionValue}
+                  renderSuggestion={renderSuggestion}
+                  inputProps={inputProps}
+                /> */}
+                <Autosuggesterino
+                  searchMovie={searchMovie}
+                  setSearchMovie={setSearchMovie}
+                  searchSuggestions={searchSuggestions}
+                  setSearchSuggestions={setSearchSuggestions}
+                ></Autosuggesterino>
                 <button className="btn-primary basis-1/6 w-8 rounded-md m-2">
                   +
                 </button>
