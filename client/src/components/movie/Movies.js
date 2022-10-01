@@ -17,7 +17,7 @@ const Movies = ({ _id }) => {
   React.useEffect(() => refreshMovies(), []);
 
   return (
-    <div className="flex">
+    <div className="flex flex-wrap">
       {movies !== null &&
         movies.map((movie) => <Movie key={movie._id} movie={movie}></Movie>)}
     </div>

@@ -7,9 +7,9 @@ const Movie = ({ movie }) => {
 
   if (movie != null) {
     return (
-      <div className="h-fit w-fit">
+      <div className="">
         <div
-          className="flex w-32 h-48 rounded-sm bg-contain m-2"
+          className="flex w-32 h-48 rounded-sm bg-contain"
           style={{ backgroundImage: `url(${movie.image})` }}
         >
           <div className="flex container justify-between m-2">

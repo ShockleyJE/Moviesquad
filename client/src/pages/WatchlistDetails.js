@@ -50,7 +50,7 @@ const WatchlistDetails = ({ _id, name }) => {
         <AuthedNavbar></AuthedNavbar>
       </div>
       <div className="flex justify-center">
-        <div className="flex-col m-4 w-2/3">
+        <div className="flex-col m-4 lg:w-2/3">
           <div className="basis-1/2 mb-8">
             <form>
               <div className="justify-between ">
@@ -94,11 +94,9 @@ const WatchlistDetails = ({ _id, name }) => {
                   </button>
                 </div>
               </div>
-              <div className="flex h-[720px]">
-                <div className="flex-col flex-wrap max-w-full">
-                  <div className="flex flex-wrap">
-                    <Movies _id={wlid}></Movies>
-                  </div>
+              <div className="flex">
+                <div className="max-w-full flex flex-wrap">
+                  <Movies _id={wlid}></Movies>
                 </div>
               </div>
             </div>
