@@ -9,7 +9,8 @@ const Movies = ({ _id }) => {
 
   const refreshMovies = () => {
     getMoviesByWatchlist(auth.user, _id).then((val) => {
-      setMovies(val.movies);
+      let movies = val.movies.filter((ele) => ele !== null);
+      setMovies(movies);
     });
   };
 
@@ -17,7 +18,7 @@ const Movies = ({ _id }) => {
 
   return (
     <div className="flex">
-      {movies != null &&
+      {movies !== null &&
         movies.map((movie) => <Movie key={movie._id} movie={movie}></Movie>)}
     </div>
   );

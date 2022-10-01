@@ -1,6 +1,8 @@
 import React from "react";
 import Autosuggest from "react-autosuggest";
 
+// Sponsored by: http://react-autosuggest.js.org/
+
 // Base list of movies to autosuggest.
 let movies = [
   {
@@ -74,7 +76,7 @@ const updateSuggestions = (queryParam) => {
           (ele) => ele.original_title != undefined
         );
         let suggArr = valid.map((ele) => {
-          return { name: ele.original_title, tmdb_id: ele.id };
+          return { name: ele.original_title, tmdb_id: ele.id, ...ele };
         });
         console.log(suggArr);
         movies = suggArr;
@@ -97,22 +99,15 @@ const getSuggestions = (value) => {
       );
 };
 
-// When suggestion is clicked, Autosuggest needs to populate the input
-// based on the clicked suggestion. Teach Autosuggest how to calculate the
-// input value for every given suggestion.
-const getSuggestionValue = (suggestion) => {
-  return suggestion.name;
-};
-
 // Use your imagination to render suggestions.
 const renderSuggestion = (suggestion) => <div>{suggestion.name}</div>;
 
 class Autosuggesterino extends React.Component {
-  constructor({ searchMovie, setSearchMovie }) {
+  constructor({ searchMovieHandler }) {
     super();
 
-    this.searchMovie = searchMovie;
-    this.setSearchMovie = setSearchMovie;
+    this.searchMovie = "";
+    this.searchMovieHandler = searchMovieHandler;
 
     // Autosuggest is a controlled component.
     // This means that you need to provide an input value
@@ -126,8 +121,6 @@ class Autosuggesterino extends React.Component {
   }
 
   onChange = (event, { newValue }) => {
-    console.log(`in onChange on class, newValue: ${newValue} `);
-    console.log(updateSuggestions(newValue));
     this.setState({
       value: newValue,
     });
@@ -136,6 +129,7 @@ class Autosuggesterino extends React.Component {
   // Autosuggest will call this function every time you need to update suggestions.
   // You already implemented this logic above, so just use it.
   onSuggestionsFetchRequested = ({ value }) => {
+    updateSuggestions(value);
     this.setState({
       suggestions: getSuggestions(value),
     });
@@ -146,6 +140,16 @@ class Autosuggesterino extends React.Component {
     this.setState({
       suggestions: [],
     });
+  };
+
+  // When suggestion is clicked, Autosuggest needs to populate the input
+  // based on the clicked suggestion. Teach Autosuggest how to calculate the
+  // input value for every given suggestion.
+  getSuggestionValue = (suggestion) => {
+    console.log("movie was clicked:");
+    console.log(suggestion);
+    this.searchMovieHandler(suggestion);
+    return suggestion.name;
   };
 
   render() {
@@ -164,7 +168,7 @@ class Autosuggesterino extends React.Component {
         suggestions={suggestions}
         onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
         onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-        getSuggestionValue={getSuggestionValue}
+        getSuggestionValue={this.getSuggestionValue}
         renderSuggestion={renderSuggestion}
         inputProps={inputProps}
       />

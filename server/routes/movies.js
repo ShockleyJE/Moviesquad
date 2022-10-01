@@ -7,7 +7,7 @@ router.get("/", ensureAuth, moviesController.getMovies);
 
 router.get("/watchlist/:id", moviesController.getMoviesByWatchlist);
 
-router.post("/createMovie", moviesController.createMovie);
+router.post("/watchlist/:id", moviesController.createMovieToWatchlist);
 
 router.put("/markWatched", moviesController.markWatched);
 
