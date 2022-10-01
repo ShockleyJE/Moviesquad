@@ -17,11 +17,12 @@ Refactor currently in progress from EJS templated views -> React. The following 
 - [x] Login
 - [x] Signup
 - [x] Authentication & protected routes
-- [x] (EJS -> React: In progress) Watchlist dashboard
-- [x] (EJS -> React: In progress) Create new watchlist
-- [ ] (EJS -> React: In progress) Assign movies to watchlist
+- [x] (EJS -> React) Watchlist dashboard
+- [x] (EJS -> React) Create new watchlist
+- [x] (EJS -> React) Assign movies to watchlist
 - [ ] Manage your profile
 - [ ] Assign users to watchlist
+- [ ] Mobile optimizations
 
 ## history
 
