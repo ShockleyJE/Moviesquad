@@ -4,7 +4,7 @@ a collaborative, cross-platform & multi-service watchlist designed to respect yo
 
 [see it here](https://moviesquad.net/)
 
-<img src="https://github.com/ShockleyJE/Moviesquad/blob/main/docs/promotional/home.png" width="100%"  alt="Moviesquad"/>
+<img src="https://github.com/ShockleyJE/Moviesquad/blob/main/docs/promotional/moviesquad.gif" poster="https://github.com/ShockleyJE/Moviesquad/blob/main/docs/promotional/home.png" width="100%"  alt="Moviesquad"/>
 
 ## about
 
