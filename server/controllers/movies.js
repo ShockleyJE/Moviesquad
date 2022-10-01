@@ -32,113 +32,73 @@ module.exports = {
     console.log(`getMoviesByWatchlist, wl: ${req.params.id}`);
     console.log(req.body.user);
     try {
-      let theMovies = [];
       const theWatchlist = await Watchlist.findOne({
         _id: req.params.id,
       });
-      const movieItems = await Movie.find({
-        _id: { $in: theWatchlist.moviesID },
-        deleted: false,
+
+      let moviePromises = theWatchlist.moviesID.map((ele) => {
+        return Movie.findOne({
+          _id: ele._id,
+        });
       });
+
+      theMovies = await Promise.all(moviePromises);
+
       console.log(
-        `Found ${movieItems.length} items for watchlist ID ${req.params.id}`
+        `Found ${theMovies.length} items for watchlist ID ${req.params.id}`
       );
       res.end(
         JSON.stringify({
-          movies: movieItems,
+          movies: theMovies,
         })
       );
     } catch (err) {
       console.log(err);
     }
   },
-  createMovie: async (req, res) => {
+  createMovieToWatchlist: async (req, res) => {
     try {
-      const movieItems = await Movie.find({
-        userId: req.user.id,
-        deleted: false,
-      });
-      let search = req.body.movieItem.replace(" ", "+");
-      const url = `https://api.themoviedb.org/3/search/multi?api_key=9ac0eb557b1857810d37cbef8fd0557b&query=${search}`;
-      //pass request of user input to the movie api to get title and image from api
-      await fetch(url)
-        .then((res) => res.json()) // parse response as JSON
-        .then((data) => {
-          //console.log(data.results[0].media_type)
-          //console.log(data)
-          if (data.results[0].media_type != "person") {
-            movieTitle = data.results[0].name || data.results[0].title;
-            console.log(movieTitle);
-            image = `https://image.tmdb.org/t/p/original/${data.results[0].poster_path}`;
-            if (image.length < 42) {
-              image = "assets/placeholder.jpg";
-            }
-          } else {
-            movieTitle = "";
-          }
-        })
-        .catch((err) => {
-          console.log(`error out possible bad search query? ${err}`);
-          movieTitle = "";
-        });
+      const user = req.body.user;
+      const movie = req.body.movie;
+      const watchlistID = req.body.watchlist_id;
 
-      // console.log(movieTitle.toLowerCase())
-      // console.log(movieItems)
-
-      //if movietitle was found in the api add it to the list
-      if (
-        movieTitle.length < req.body.movieItem.length + 3 &&
-        movieTitle.length > req.body.movieItem.length - 3
-      ) {
-        //check if title is already in watchlist
-        let duplicates = movieItems.filter(
-          (el) => el.movie.toLowerCase() === movieTitle.toLowerCase()
-        );
-        if (duplicates.length) {
-          console.log(`duplicates is: ${duplicates[0].watched}`);
-          if (duplicates[0].watched) {
-            console.log(
-              `You've already watched ${req.body.movieItem}. Go to your 'Seen List' and mark 'Unwatched' to move this title back to your watch list`
-            );
-            req.flash(
-              "errors",
-              `You've already watched ${req.body.movieItem}. Go to your 'Seen List' and mark 'Unwatched' to move this title back to your watch list`
-            );
-            res.redirect("/movies");
-          } else {
-            console.log(`${req.body.movieItem} is already in your watch list!`);
-            req.flash(
-              "errors",
-              `${req.body.movieItem} is already in your watch list`
-            );
-            res.redirect("/movies");
-          }
-        } else {
-          await Movie.create({
-            movie: req.body.movieItem,
-            watched: false,
-            recommend: false,
-            title: movieTitle,
-            image: image,
-            deleted: false,
-            userId: req.user.id,
-          });
-          console.log("Movie has been added!");
-          res.redirect("/movies");
-        }
+      if (!movie.hasOwnProperty("poster_path")) {
+        movie.poster_path = "";
+        movie.image = `https://moviesquad.net/public/placeholder_poster.png`;
+        movie.hasImage = true;
+      } else {
+        movie.image = `https://image.tmdb.org/t/p/original/${movie.poster_path}`;
+        movie.hasImage = false;
       }
-      //if the movie title was not found in the database send a flash error to the user letting them know.
-      else {
-        let movieTitle = "";
-        console.log(` ${req.body.movieItem} was not found or added!`);
-        req.flash(
-          "errors",
-          `Could not find ${req.body.movieItem} please try another search`
-        );
-        res.redirect("/movies");
+
+      try {
+        Movie.create({
+          title: movie.title,
+          image: movie.image,
+          posterPath: movie.poster_path,
+          userID: user._id,
+          watchlistID: watchlistID,
+          hasImage: movie.hasImage,
+        }).then((doc) => {
+          Watchlist.findOneAndUpdate(
+            { _id: watchlistID },
+            { $push: { moviesID: String(doc._id) } }
+          ).then((wl) => {
+            res.end(
+              JSON.stringify({
+                message: "success",
+                _id: doc._id,
+                wl_id: wl._id,
+              })
+            );
+          });
+        });
+      } catch {
+        res.end({ message: "failure" });
       }
     } catch (err) {
-      console.log(err);
+      res.end({ message: "failure" });
+      console.log(`Exception in create movie while parsing required values:`);
     }
   },
 
@@ -170,17 +130,6 @@ module.exports = {
       console.log(err);
     }
   },
-  // recommendMovie: async (req, res)=>{
-  //     try{
-  //         await Movie.updateOne({_id:req.body.movieIdFromJSFile}, {
-  //             $inc: { recommend: 1 }
-  //     })
-  //         console.log('Incresed recommend by 1')
-  //         res.json('Incresed recommend by 1')
-  //     }catch(err){
-  //         console.log(err)
-  //     }
-  // },
   recommendMovie: async (req, res) => {
     try {
       await Movie.findOneAndUpdate(

@@ -9,15 +9,16 @@ const Movies = ({ _id }) => {
 
   const refreshMovies = () => {
     getMoviesByWatchlist(auth.user, _id).then((val) => {
-      setMovies(val.movies);
+      let movies = val.movies.filter((ele) => ele !== null);
+      setMovies(movies);
     });
   };
 
   React.useEffect(() => refreshMovies(), []);
 
   return (
-    <div className="flex">
-      {movies != null &&
+    <div className="flex flex-wrap">
+      {movies !== null &&
         movies.map((movie) => <Movie key={movie._id} movie={movie}></Movie>)}
     </div>
   );
