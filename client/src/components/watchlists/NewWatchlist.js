@@ -31,7 +31,7 @@ const NewWatchlist = ({ refreshWatchlists, setAdd }) => {
           <div>
             <label
               for="name"
-              class="text-3xl font-medium text-gray-900 block mb-2 text-gray-800"
+              class="text-3xl text-gray-900 block mb-2 text-gray-800"
             >
               New Watchlist
             </label>

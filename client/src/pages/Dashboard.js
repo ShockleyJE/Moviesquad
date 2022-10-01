@@ -61,7 +61,16 @@ const Dashboard = () => {
         </div>
         {/* placeholder layout  */}
         <div className="flex m-4">
-          <div class="lg:w-2/3 h-2/3 w-full bg-transparent pr-4">
+          <div class="lg:w-3/4 w-full bg-transparent pr-4">
+            <div class="bg-transparent pb-4">
+              {/* NOTE 1: This is example code to show how to do a ternary without else, in the example of toggling the create watchlist form */}
+              {showAdd == true && (
+                <NewWatchlist
+                  refreshWatchlists={refreshWatchlists}
+                  setAdd={setAdd}
+                ></NewWatchlist>
+              )}
+            </div>
             {/* NOTE: To enable the spillover behavior again, change all three values for h- to h-1/3 */}
             <div class="bg-inherit">
               <Watchlists
@@ -81,16 +90,6 @@ const Dashboard = () => {
                 refreshWatchlists={refreshWatchlists}
               ></Watchlists>
             </div>
-          </div>
-
-          <div class="lg:w-1/3 bg-transparent">
-            {/* NOTE 1: This is example code to show how to do a ternary without else, in the example of toggling the create watchlist form */}
-            {showAdd == true && (
-              <NewWatchlist
-                refreshWatchlists={refreshWatchlists}
-                setAdd={setAdd}
-              ></NewWatchlist>
-            )}
           </div>
         </div>
       </div>
