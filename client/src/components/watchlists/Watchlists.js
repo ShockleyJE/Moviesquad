@@ -15,7 +15,13 @@ const Watchlists = ({
     return (
       <div className="space-y-4 rounded-lg dark:bg-gray-200 dark:text-gray-800 p-4">
         <span class="text-3xl">{type} Watchlists</span>
-        <p>coming October 8th in the Moviesquad social update</p>
+        <p>
+          coming{" "}
+          {new Intl.DateTimeFormat("en-US", { month: "long" }).format(
+            new Date()
+          )}{" "}
+          {new Date().getDay() + 3} in the Moviesquad social update
+        </p>
       </div>
     );
   }

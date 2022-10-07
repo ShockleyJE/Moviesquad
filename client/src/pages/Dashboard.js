@@ -26,7 +26,7 @@ const Dashboard = () => {
   //initialize watchlists via api on load
   useEffect(() => {
     refreshWatchlists();
-  }, []);
+  }, [showAdd]);
 
   const deleteWatchlist = ({ _id }) => {
     setWatchlists(

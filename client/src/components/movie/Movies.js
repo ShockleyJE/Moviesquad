@@ -19,7 +19,11 @@ const Movies = ({ _id, wl }) => {
   return (
     <div className="flex flex-wrap">
       {movies !== null &&
-        movies.map((movie) => <Movie key={movie._id} movie={movie}></Movie>)}
+        movies.map((movie) => (
+          <div className="p-2">
+            <Movie key={movie._id} movie={movie}></Movie>
+          </div>
+        ))}
     </div>
   );
 };
