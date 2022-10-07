@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthProvider";
 import { Navigate } from "react-router-dom";
-import AuthedNavbar from "../components/navbar/AuthedNavbar";
+import Navbar from "../components/navbar/Navbar";
 import Watchlists from "../components/watchlists/Watchlists";
 import { getAllWatchlists } from "../api/watchlistAPI.js";
 import NewWatchlist from "../components/watchlists/NewWatchlist";
@@ -57,7 +57,7 @@ const Dashboard = () => {
     return (
       <div className="w-full">
         <div className="">
-          <AuthedNavbar></AuthedNavbar>
+          <Navbar></Navbar>
         </div>
         {/* placeholder layout  */}
         <div className="flex m-4">

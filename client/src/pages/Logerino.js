@@ -1,6 +1,6 @@
 import React from "react";
 import Login from "../components/login/Login";
-import UnauthedNavbar from "../components/navbar/UnauthedNavbar";
+import Navbar from "../components/navbar/Navbar";
 import { useAuth } from "../context/AuthProvider";
 import { Navigate } from "react-router-dom";
 
@@ -14,7 +14,7 @@ const Logerino = () => {
     <div className="">
       <div>
         <div>
-          <UnauthedNavbar></UnauthedNavbar>
+          <Navbar></Navbar>
         </div>
         <div className="relative flex items-center justify-center">
           <div className="w-full md:w-2/3 self-center max-w-xl lg:max-w-2xl h-full">

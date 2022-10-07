@@ -1,5 +1,5 @@
 import React from "react";
-import AuthedNavbar from "../components/navbar/AuthedNavbar";
+import Navbar from "../components/navbar/Navbar";
 import { getWatchlist } from "../api/watchlistAPI";
 import { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
@@ -47,7 +47,7 @@ const WatchlistDetails = ({ _id, name }) => {
   return (
     <div className="">
       <div className="">
-        <AuthedNavbar></AuthedNavbar>
+        <Navbar></Navbar>
       </div>
       <div className="flex justify-center">
         <div className="flex-col m-4 lg:w-2/3">

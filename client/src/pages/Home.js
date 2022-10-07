@@ -1,5 +1,5 @@
 import React from "react";
-import UnauthedNavbar from "../components/navbar/UnauthedNavbar";
+import Navbar from "../components/navbar/Navbar";
 import { useState, useEffect } from "react";
 
 const Home = () => {
@@ -31,7 +31,7 @@ const Home = () => {
     <div className="">
       <div>
         <div>
-          <UnauthedNavbar></UnauthedNavbar>
+          <Navbar></Navbar>
         </div>
         <div className="relative flex items-center justify-center">
           <div className="w-full md:w-2/3 self-center max-w-xl lg:max-w-2xl h-full">
