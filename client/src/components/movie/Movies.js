@@ -3,7 +3,7 @@ import { useAuth } from "../../context/AuthProvider";
 import { getMoviesByWatchlist } from "../../api/movieAPI.js";
 import Movie from "./Movie";
 
-const Movies = ({ _id }) => {
+const Movies = ({ _id, wl }) => {
   const auth = useAuth();
   const [movies, setMovies] = React.useState(null);
 
@@ -14,7 +14,7 @@ const Movies = ({ _id }) => {
     });
   };
 
-  React.useEffect(() => refreshMovies(), []);
+  React.useEffect(() => refreshMovies(), [wl]);
 
   return (
     <div className="flex flex-wrap">

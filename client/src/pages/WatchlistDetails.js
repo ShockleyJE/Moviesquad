@@ -7,6 +7,7 @@ import { useAuth } from "../context/AuthProvider";
 import Movies from "../components/movie/Movies";
 import Autosuggesterino from "../components/autosuggest/Autosuggesterino";
 import { addMovieToWatchlist } from "../api/movieAPI";
+import { getAllWatchlists } from "../api/watchlistAPI.js";
 import axios from "axios";
 
 const WatchlistDetails = ({ _id, name }) => {
@@ -30,6 +31,13 @@ const WatchlistDetails = ({ _id, name }) => {
     });
   }, []);
 
+  const reloadWatchlist = () => {
+    getWatchlist(auth.user, wlid).then((val) => {
+      setWl(val);
+      setWlNewName(val.name);
+    });
+  };
+
   const toggleShare = () => {
     console.log("toggling share");
   };
@@ -42,6 +50,7 @@ const WatchlistDetails = ({ _id, name }) => {
   const addMovieHandler = () => {
     console.log("add Movie Handler triggered");
     let res = addMovieToWatchlist(auth.user, searchedMovie, wl);
+    res.then(() => reloadWatchlist());
   };
 
   return (
@@ -96,7 +105,7 @@ const WatchlistDetails = ({ _id, name }) => {
               </div>
               <div className="flex">
                 <div className="max-w-full flex flex-wrap">
-                  <Movies _id={wlid}></Movies>
+                  <Movies _id={wlid} wl={wl}></Movies>
                 </div>
               </div>
             </div>
