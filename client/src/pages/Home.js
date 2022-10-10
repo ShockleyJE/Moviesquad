@@ -60,7 +60,7 @@ const Home = () => {
       <div className="w-full fixed bottom-20 text-center ">
         <h4 className="inline">designed and built by </h4>
         <a
-          className="inline text-blue-700"
+          className="inline text-blue-400 bold"
           href="https://www.shockleyje.com"
           target="_blank"
         >

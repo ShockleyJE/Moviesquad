@@ -104,7 +104,7 @@ const WatchlistDetails = ({ _id, name }) => {
                 </div>
               </div>
               <div className="flex">
-                <div className="max-w-full flex flex-wrap">
+                <div className="max-w-full justify-evenly flex-wrap">
                   <Movies _id={wlid} wl={wl}></Movies>
                 </div>
               </div>

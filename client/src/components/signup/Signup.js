@@ -38,20 +38,6 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let options = {
-      method: "POST",
-      body: JSON.stringify({
-        email: email,
-        password: password,
-        firstName: firstName,
-        lastName: lastName,
-        userName: userName,
-        confirmPassword: confirmPassword,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
     try {
       const response = await axios.post(
         SIGNUP_URL,
@@ -107,7 +93,7 @@ const Signup = () => {
               name="firstName"
               id="firstName"
               class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-100 dark:border-gray-300 dark:placeholder-gray-600 dark:text-gray-700"
-              placeholder="shake"
+              placeholder="Shake"
               required
               value={firstName}
             />
@@ -125,7 +111,7 @@ const Signup = () => {
               name="lastName"
               id="lastName"
               class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-100 dark:border-gray-300 dark:placeholder-gray-600 dark:text-gray-700"
-              placeholder="zula"
+              placeholder="Zula"
               required
               value={lastName}
             />
@@ -164,6 +150,20 @@ const Signup = () => {
               placeholder="name@company.com"
               required
               value={email}
+            />
+          </div>
+          <div>
+            <label
+              for="imgUpload"
+              class="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-800"
+            >
+              Image
+            </label>
+            <input
+              type="file"
+              class="form-control"
+              id="imageUpload"
+              name="file"
             />
           </div>
           <div>

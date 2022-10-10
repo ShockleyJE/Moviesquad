@@ -26,10 +26,10 @@ const Logerino = () => {
           </div>
         </div>
       </div>
-      <div className="w-full fixed bottom-12 text-center ">
+      <div className="w-full fixed bottom-12 text-center hidden sm:block md:block lg:block">
         <h4 className="inline">designed and built by </h4>
         <a
-          className="inline text-blue-700"
+          className="inline text-blue-400 bold"
           href="https://www.shockleyje.com"
           target="_blank"
         >

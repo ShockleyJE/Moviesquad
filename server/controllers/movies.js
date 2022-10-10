@@ -3,31 +3,6 @@ const Movie = require("../models/Movie");
 const Watchlist = require("../models/Watchlist");
 
 module.exports = {
-  getMovies: async (req, res) => {
-    console.log(req.user);
-    try {
-      const movieItems = await Movie.find({
-        userId: req.user.id,
-        deleted: false,
-      });
-      const moviesLeft = await Movie.countDocuments({
-        userId: req.user.id,
-        watched: false,
-        deleted: false,
-      });
-      const moviesDB = await Movie.find({
-        recommend: true,
-      });
-      res.render("movies.ejs", {
-        movies: movieItems,
-        dbMovies: moviesDB,
-        left: moviesLeft,
-        user: req.user,
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  },
   getMoviesByWatchlist: async (req, res) => {
     console.log(`getMoviesByWatchlist, wl: ${req.params.id}`);
     console.log(req.body.user);
@@ -39,6 +14,7 @@ module.exports = {
       let moviePromises = theWatchlist.moviesID.map((ele) => {
         return Movie.findOne({
           _id: ele._id,
+          deleted: false,
         });
       });
 
@@ -116,6 +92,7 @@ module.exports = {
       console.log(err);
     }
   },
+
   markUnWatched: async (req, res) => {
     try {
       await Movie.findOneAndUpdate(
@@ -130,45 +107,52 @@ module.exports = {
       console.log(err);
     }
   },
-  recommendMovie: async (req, res) => {
+  likeMovie: async (req, res) => {
+    console.log(`Liking movie ${req.params.id}`);
     try {
       await Movie.findOneAndUpdate(
-        { _id: req.body.movieIdFromJSFile },
+        { _id: req.params.id },
         {
-          recommend: true,
+          liked: true,
+          disliked: false,
         }
       );
-      console.log("Recommended Movie");
-      res.json("Recommended Movie");
+      console.log("Liked Movie");
+      res.json("Liked Movie");
     } catch (err) {
       console.log(err);
     }
   },
-  unRecommendMovie: async (req, res) => {
+  dislikeMovie: async (req, res) => {
+    console.log(`Disliking movie ${req.params.id}`);
     try {
       await Movie.findOneAndUpdate(
-        { _id: req.body.movieIdFromJSFile },
+        { _id: req.params.id },
         {
-          recommend: false,
+          liked: false,
+          disliked: true,
         }
       );
-      console.log("Un-recommended Movie");
-      res.json("Un-recommended Movie");
+      console.log("Disliked Movie");
+      res.json("Disliked Movie");
     } catch (err) {
       console.log(err);
     }
   },
+
   deleteMovie: async (req, res) => {
-    console.log(req.body.movieIdFromJSFile);
+    console.log(`Deleting movie ${req.params.id}`);
     try {
       await Movie.updateOne(
-        { _id: req.body.movieIdFromJSFile },
+        {
+          _id: req.params.id,
+        },
         {
           deleted: true,
         }
       );
-      console.log("Show Deleted");
-      res.json("Show Deleted");
+      console.log("Movie Deleted");
+      res.json({ message: "Movie Deleted" });
     } catch (err) {
       console.log(err);
     }

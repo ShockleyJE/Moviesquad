@@ -18,7 +18,7 @@ const Signerino = () => {
         </div>
         <div className="relative flex items-center justify-center">
           <div className="w-full md:w-2/3 self-center max-w-xl lg:max-w-2xl h-full">
-            <div className="flex items-center justify-center h-[80vh]">
+            <div className="flex items-center justify-center sm:h-[80vh] md:h-[80vh] lg:h-[80vh]">
               <div className="flex "></div>
               <div className="flex justify-center">
                 <Signup></Signup>

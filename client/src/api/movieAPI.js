@@ -72,3 +72,51 @@ export async function addMovieToWatchlist(user, movie, watchlist) {
     console.log(err);
   }
 }
+
+export async function deleteMovie(user, movie) {
+  const URL = `movies/delete/${movie._id}`;
+  console.log(`Deleting to URL: ${URL}`);
+  try {
+    const { data } = await axios.delete(URL);
+    console.log(`deleted movie ${movie.title}`);
+    console.log(data);
+  } catch (err) {
+    console.log(`Error posting movie ${err}`);
+  }
+}
+
+export async function likeMovie(user, movie) {
+  const URL = `movies/like/${movie._id}`;
+  console.log(`Liking to URL: ${URL}`);
+  try {
+    const { data } = await axios.put(URL);
+    console.log(`liked movie ${movie.title}`);
+    console.log(data);
+  } catch (err) {
+    console.log(`Error posting movie ${err}`);
+  }
+}
+
+export async function dislikeMovie(user, movie) {
+  const URL = `movies/dislike/${movie._id}`;
+  console.log(`Disliking to URL: ${URL}`);
+  try {
+    const { data } = await axios.put(URL);
+    console.log(`disliked movie ${movie.title}`);
+    console.log(data);
+  } catch (err) {
+    console.log(`Error posting movie ${err}`);
+  }
+}
+
+export async function watchMovie(user, movie) {
+  const URL = `movies/watch/${movie._id}`;
+  console.log(`Liking to URL: ${URL}`);
+  try {
+    const { data } = await axios.put(URL);
+    console.log(`liked movie ${movie.title}`);
+    console.log(data);
+  } catch (err) {
+    console.log(`Error posting movie ${err}`);
+  }
+}

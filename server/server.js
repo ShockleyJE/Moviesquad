@@ -16,9 +16,9 @@ const path = require("path");
 const cors = require("cors");
 
 if (process.env.NODE_ENV == "production") {
-  // Set static folder
-  require("dotenv").config({ path: "./config/.env" });
+  console.log("Attempting to use production ENV values for secrets");
 } else {
+  console.log("Attempting to use development env file for secrets");
   require("dotenv").config({ path: "./config/.env" });
 }
 
