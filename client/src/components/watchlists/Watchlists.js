@@ -16,11 +16,14 @@ const Watchlists = ({
       <div className="space-y-4 rounded-lg dark:bg-gray-200 dark:text-gray-800 p-4">
         <span class="text-3xl">{type} Watchlists</span>
         <p>
-          coming{" "}
-          {new Intl.DateTimeFormat("en-US", { month: "long" }).format(
-            new Date()
-          )}{" "}
-          {new Date().getDay() + 3} in the Moviesquad social update
+          Coming{" "}
+          <b>
+            {new Intl.DateTimeFormat("en-US", { month: "long" }).format(
+              new Date()
+            )}{" "}
+            {new Date().getDate() + 3}
+          </b>{" "}
+          in the Moviesquad social update
         </p>
       </div>
     );
