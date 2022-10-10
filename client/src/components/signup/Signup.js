@@ -1,4 +1,10 @@
-import React, { useState, useRef, useEffect, useContext } from "react";
+import React, {
+  useState,
+  useRef,
+  createRef,
+  useEffect,
+  useContext,
+} from "react";
 import { Link } from "react-router-dom";
 import Logo from "../logo/Logo";
 import axios from "../../api/axios";
@@ -21,6 +27,7 @@ const Signup = () => {
   const [userName, setUsername] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [selectedFile, setSelectedFile] = useState(null);
 
   // Put focus on email field initially
   useEffect(() => {
@@ -35,6 +42,38 @@ const Signup = () => {
   if (auth.isauthed()) {
     return <Navigate replace to="/watchlists" />;
   }
+
+  //const handleSubmit = async (e) => {
+  //  e.preventDefault();
+  //  let formData = new FormData();
+  //
+  //  formData.append("email", email);
+  //  formData.append("password", password);
+  //  formData.append("firstName", firstName);
+  //  formData.append("lastName", lastName);
+  //  formData.append("userName", userName);
+  //  formData.append("confirmPassword", confirmPassword);
+  //  formData.append("profileImage", selectedFile);
+  //
+  //  try {
+  //    const response = await axios.post(SIGNUP_URL, formData, {
+  //      headers: { "Content-Type": "multipart/form-data" },
+  //    });
+  //    if (response) {
+  //      setAuthAttempt(response.data);
+  //    }
+  //    if (authAttempt._id != undefined) {
+  //      auth.login(authAttempt);
+  //    } else if (authAttempt.error) {
+  //      console.log(authAttempt.error);
+  //      setErrMsg(authAttempt.error);
+  //    }
+  //    //set the focus back for screenreaders
+  //    errRef.current.focus();
+  //  } catch (err) {
+  //    console.log(err);
+  //  }
+  //};
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -57,7 +96,7 @@ const Signup = () => {
         setAuthAttempt(response.data);
       }
       if (authAttempt._id != undefined) {
-        auth.login(authAttempt);
+        auth.login(response.data);
       } else if (authAttempt.error) {
         console.log(authAttempt.error);
         setErrMsg(authAttempt.error);
@@ -157,13 +196,14 @@ const Signup = () => {
               for="imgUpload"
               class="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-800"
             >
-              Image
+              Profile Image
             </label>
             <input
               type="file"
               class="form-control"
-              id="imageUpload"
+              id="profileImage"
               name="file"
+              onChange={(e) => setSelectedFile(e.target.files[0])}
             />
           </div>
           <div>
