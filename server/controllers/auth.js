@@ -134,9 +134,9 @@ exports.postSignup = (req, res, next) => {
           }
 
           //const result = cloudinary.uploader.upload(req.file.path);
-          //user.profileImage = result.secure_url
-          //user.profileImageCloudinaryId = result.public_id
-          user.save();
+          //user.profileImage = result.secure_url;
+          //user.profileImageCloudinaryId = result.public_id;
+          //user.save();
           delete user.password;
           console.log("successful signup");
           return res.end(JSON.stringify(user));

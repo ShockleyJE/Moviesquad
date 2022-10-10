@@ -1,5 +1,5 @@
 import React from "react";
-import AuthedNavbar from "../components/navbar/AuthedNavbar";
+import Navbar from "../components/navbar/Navbar";
 import { getWatchlist } from "../api/watchlistAPI";
 import { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
@@ -7,6 +7,7 @@ import { useAuth } from "../context/AuthProvider";
 import Movies from "../components/movie/Movies";
 import Autosuggesterino from "../components/autosuggest/Autosuggesterino";
 import { addMovieToWatchlist } from "../api/movieAPI";
+import { getAllWatchlists } from "../api/watchlistAPI.js";
 import axios from "axios";
 
 const WatchlistDetails = ({ _id, name }) => {
@@ -30,6 +31,13 @@ const WatchlistDetails = ({ _id, name }) => {
     });
   }, []);
 
+  const reloadWatchlist = () => {
+    getWatchlist(auth.user, wlid).then((val) => {
+      setWl(val);
+      setWlNewName(val.name);
+    });
+  };
+
   const toggleShare = () => {
     console.log("toggling share");
   };
@@ -42,12 +50,13 @@ const WatchlistDetails = ({ _id, name }) => {
   const addMovieHandler = () => {
     console.log("add Movie Handler triggered");
     let res = addMovieToWatchlist(auth.user, searchedMovie, wl);
+    res.then(() => reloadWatchlist());
   };
 
   return (
     <div className="">
       <div className="">
-        <AuthedNavbar></AuthedNavbar>
+        <Navbar></Navbar>
       </div>
       <div className="flex justify-center">
         <div className="flex-col m-4 lg:w-2/3">
@@ -95,8 +104,8 @@ const WatchlistDetails = ({ _id, name }) => {
                 </div>
               </div>
               <div className="flex">
-                <div className="max-w-full flex flex-wrap">
-                  <Movies _id={wlid}></Movies>
+                <div className="max-w-full justify-evenly flex-wrap">
+                  <Movies _id={wlid} wl={wl}></Movies>
                 </div>
               </div>
             </div>

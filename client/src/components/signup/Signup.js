@@ -1,4 +1,10 @@
-import React, { useState, useRef, useEffect, useContext } from "react";
+import React, {
+  useState,
+  useRef,
+  createRef,
+  useEffect,
+  useContext,
+} from "react";
 import { Link } from "react-router-dom";
 import Logo from "../logo/Logo";
 import axios from "../../api/axios";
@@ -21,6 +27,7 @@ const Signup = () => {
   const [userName, setUsername] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [selectedFile, setSelectedFile] = useState(null);
 
   // Put focus on email field initially
   useEffect(() => {
@@ -36,22 +43,40 @@ const Signup = () => {
     return <Navigate replace to="/watchlists" />;
   }
 
+  //const handleSubmit = async (e) => {
+  //  e.preventDefault();
+  //  let formData = new FormData();
+  //
+  //  formData.append("email", email);
+  //  formData.append("password", password);
+  //  formData.append("firstName", firstName);
+  //  formData.append("lastName", lastName);
+  //  formData.append("userName", userName);
+  //  formData.append("confirmPassword", confirmPassword);
+  //  formData.append("profileImage", selectedFile);
+  //
+  //  try {
+  //    const response = await axios.post(SIGNUP_URL, formData, {
+  //      headers: { "Content-Type": "multipart/form-data" },
+  //    });
+  //    if (response) {
+  //      setAuthAttempt(response.data);
+  //    }
+  //    if (authAttempt._id != undefined) {
+  //      auth.login(authAttempt);
+  //    } else if (authAttempt.error) {
+  //      console.log(authAttempt.error);
+  //      setErrMsg(authAttempt.error);
+  //    }
+  //    //set the focus back for screenreaders
+  //    errRef.current.focus();
+  //  } catch (err) {
+  //    console.log(err);
+  //  }
+  //};
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let options = {
-      method: "POST",
-      body: JSON.stringify({
-        email: email,
-        password: password,
-        firstName: firstName,
-        lastName: lastName,
-        userName: userName,
-        confirmPassword: confirmPassword,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
     try {
       const response = await axios.post(
         SIGNUP_URL,
@@ -71,7 +96,7 @@ const Signup = () => {
         setAuthAttempt(response.data);
       }
       if (authAttempt._id != undefined) {
-        auth.login(authAttempt);
+        auth.login(response.data);
       } else if (authAttempt.error) {
         console.log(authAttempt.error);
         setErrMsg(authAttempt.error);
@@ -86,8 +111,10 @@ const Signup = () => {
   return (
     <div class="max-w-4xl mx-auto">
       <div class="bg-white shadow-md border border-gray-200 rounded-lg max-w-3xl p-4 sm:p-8 lg:p-12 dark:bg-white dark:border-gray-300">
-        <form class="space-y-6" onSubmit={handleSubmit}>
-          <h2 className="text-3xl text-grey-700">Sign up</h2>
+        <form class="space-y-1" onSubmit={handleSubmit}>
+          <h2 className="text-3xl text-grey-700 dark: text-gray-800 mb-4">
+            Sign up
+          </h2>
           <p ref={errRef} className={errorMsg ? "text-red-600" : "hidden"}>
             {errorMsg}
           </p>
@@ -105,7 +132,7 @@ const Signup = () => {
               name="firstName"
               id="firstName"
               class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-100 dark:border-gray-300 dark:placeholder-gray-600 dark:text-gray-700"
-              placeholder="shake"
+              placeholder="Shake"
               required
               value={firstName}
             />
@@ -123,7 +150,7 @@ const Signup = () => {
               name="lastName"
               id="lastName"
               class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-100 dark:border-gray-300 dark:placeholder-gray-600 dark:text-gray-700"
-              placeholder="zula"
+              placeholder="Zula"
               required
               value={lastName}
             />
@@ -166,6 +193,21 @@ const Signup = () => {
           </div>
           <div>
             <label
+              for="imgUpload"
+              class="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-800"
+            >
+              Profile Image
+            </label>
+            <input
+              type="file"
+              class="form-control"
+              id="profileImage"
+              name="file"
+              onChange={(e) => setSelectedFile(e.target.files[0])}
+            />
+          </div>
+          <div>
+            <label
               for="password"
               class="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-900"
             >
@@ -200,12 +242,14 @@ const Signup = () => {
               value={confirmPassword}
             />
           </div>
-          <button
-            type="submit"
-            class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gradient-to-r from-purple-500 to-pink-500 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          >
-            Login to your account
-          </button>
+          <div className="">
+            <button
+              type="submit"
+              class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gradient-to-r from-purple-500 to-pink-500 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            >
+              Create your account
+            </button>
+          </div>
           <div class="text-sm font-medium text-gray-500 dark:text-gray-900">
             Registered?{" "}
             <Link
