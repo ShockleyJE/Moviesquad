@@ -42,39 +42,7 @@ const Signup = () => {
   if (auth.isauthed()) {
     return <Navigate replace to="/watchlists" />;
   }
-
-  //const handleSubmit = async (e) => {
-  //  e.preventDefault();
-  //  let formData = new FormData();
-  //
-  //  formData.append("email", email);
-  //  formData.append("password", password);
-  //  formData.append("firstName", firstName);
-  //  formData.append("lastName", lastName);
-  //  formData.append("userName", userName);
-  //  formData.append("confirmPassword", confirmPassword);
-  //  formData.append("profileImage", selectedFile);
-  //
-  //  try {
-  //    const response = await axios.post(SIGNUP_URL, formData, {
-  //      headers: { "Content-Type": "multipart/form-data" },
-  //    });
-  //    if (response) {
-  //      setAuthAttempt(response.data);
-  //    }
-  //    if (authAttempt._id != undefined) {
-  //      auth.login(authAttempt);
-  //    } else if (authAttempt.error) {
-  //      console.log(authAttempt.error);
-  //      setErrMsg(authAttempt.error);
-  //    }
-  //    //set the focus back for screenreaders
-  //    errRef.current.focus();
-  //  } catch (err) {
-  //    console.log(err);
-  //  }
-  //};
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
