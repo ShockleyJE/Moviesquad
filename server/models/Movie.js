@@ -5,14 +5,6 @@ const MovieSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
-  // watched: {
-  //   type: Boolean,
-  //   default: false,
-  // },
-  // recommend: {
-  //   type: Boolean,
-  //   default: false,
-  // },
   image: {
     type: String,
     required: false,

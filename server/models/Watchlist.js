@@ -8,9 +8,6 @@ const WatchlistSchema = new mongoose.Schema({
   public: { type: Boolean, default: false },
   ownerID: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   creatorID: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-  //Mongoose Multiple Foreign Key
-  //https://mongoosejs.com/docs/populate.html
-  //https://mongoosejs.com/docs/documents.html
   membersID: [
     {
       type: mongoose.Schema.Types.ObjectId,
