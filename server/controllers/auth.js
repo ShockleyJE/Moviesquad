@@ -122,7 +122,6 @@ exports.postSignup = (req, res, next) => {
               "Account with that email address or username already exists.",
           })
         );
-        //return res.redirect("../server/signup");
       }
       user.save((err) => {
         if (err) {
@@ -132,11 +131,7 @@ exports.postSignup = (req, res, next) => {
           if (err) {
             return next(err);
           }
-
-          //const result = cloudinary.uploader.upload(req.file.path);
-          //user.profileImage = result.secure_url;
-          //user.profileImageCloudinaryId = result.public_id;
-          //user.save();
+          //TODO: Include cloudinary upload workflow of prof picture
           delete user.password;
           console.log("successful signup");
           return res.end(JSON.stringify(user));
