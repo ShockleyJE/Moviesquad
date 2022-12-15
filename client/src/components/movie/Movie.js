@@ -47,12 +47,6 @@ const Movie = ({ movie, updateWLFlag, setUpdateWLFlag }) => {
           style={{ backgroundImage: `url(${movie.image})` }}
         ></div>
         <div className="flex flex-col justify-end ">
-          {/* <div className="h-6 bg-green-300 basis-1/2  flex items-center justify-center">
-            <FaThumbsUp className="" onClick={() => onDelete()} />
-          </div>
-          <div className="h-6 bg-red-200 basis-1/2 flex items-center justify-center">
-            <FaThumbsDown className="" onClick={() => onDelete()} />
-          </div> */}
           <div>
             <button
               className="btn btn-square h-6 w-8 md:w-12 lg:w-12 bg-green-200 border-green-300 text-white"

@@ -11,8 +11,6 @@ router.get("/:id", watchlistsController.getWatchlist);
 
 router.get("/user/:id", watchlistsController.getUserWatchlists);
 
-//router.get("/create/", ensureAuth, watchlistsController.createWatchlistForm);
-
 router.delete("/:id", watchlistsController.deleteWatchlist);
 
 router.put("/:id", watchlistsController.updateWatchlist);

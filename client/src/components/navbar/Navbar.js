@@ -9,7 +9,6 @@ const Navbar = () => {
 
   if (auth.user) {
     return (
-      // bg-gradient-to-r from-purple-500 to-pink-500
       <div className="pl-8 pr-8 h-20 bg-transparent flex content-center justify-between text-aquamarine ">
         <div className="self-center">
           <Link to="/watchlists" className="">
@@ -25,8 +24,6 @@ const Navbar = () => {
     );
   } else {
     return (
-      // top-0 fixed
-      //bg-gradient-to-r from-purple-500 to-pink-500
       <div className="h-25 mt-4 lg:mt-0 lg:h-20 bg-transparent flex flex-col md:flex-row lg:flex-row content-center justify-between text-aquamarine pl-8 pr-8 ">
         <div className="self-center">
           <Link to="/" className="">

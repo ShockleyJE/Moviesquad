@@ -47,9 +47,6 @@ const Watchlists = ({
               refreshWatchlists={refreshWatchlists}
             ></Watchlist>
           </li>
-
-          // This is OK-
-          // <p>{wl.name}</p>
         ))}
       </ul>
     </div>
